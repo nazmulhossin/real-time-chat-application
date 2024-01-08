@@ -1,0 +1,245 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url(../webfonts/Roboto-Regular.ttf);
+}
+#container {
+  background-color: #a7bcff;
+  background-color: #928fed;
+  background-color: #8785d1;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#container #wrapper {
+  width: 75%;
+  height: 85%;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
+  box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.35);
+}
+#container #wrapper #left_panel {
+  flex: 1;
+  background-color: #3e3c61;
+}
+#container #wrapper #left_panel #left_panel_header {
+  background-color: #2f2d52;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  color: #ddddf7;
+}
+#container #wrapper #left_panel #left_panel_header #logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+#container #wrapper #left_panel #left_panel_header #user_profile {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+#container #wrapper #left_panel #left_panel_header #user_profile img {
+  width: 27px;
+  height: 27px;
+  background-color: lightgray;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#container #wrapper #left_panel #left_panel_header #user_profile span {
+  font-size: 15.5px;
+  font-weight: bold;
+}
+#container #wrapper #left_panel #left_panel_header #user_profile button {
+  background-color: #5d5b8d;
+  color: #ddddf7;
+  font-size: 13.5px;
+  padding: 4px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+#container #wrapper #left_panel #left_panel_header #user_profile button:hover {
+  background-color: #7674b2;
+}
+#container #wrapper #left_panel #search {
+  margin: 5px 7px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+#container #wrapper #left_panel #search label {
+  position: absolute;
+  color: lightgray;
+  margin: 7px 0 0 10px;
+}
+#container #wrapper #left_panel #search input {
+  padding: 10px 0 10px 35px;
+  width: 100%;
+  border: none;
+  background-color: #2f2d52;
+  color: white;
+}
+#container #wrapper #left_panel #search input::-moz-placeholder {
+  color: lightgray;
+}
+#container #wrapper #left_panel #search input::placeholder {
+  color: lightgray;
+}
+#container #wrapper #left_panel #search input:focus {
+  outline: none;
+}
+#container #wrapper #left_panel #chats .chat_profile {
+  display: flex;
+  align-items: center;
+  margin: 0px 7px;
+  padding: 10px 7px;
+  gap: 10px;
+  color: white;
+  cursor: pointer;
+}
+#container #wrapper #left_panel #chats .chat_profile:hover {
+  border-radius: 10px;
+  background-color: #2f2d52;
+}
+#container #wrapper #left_panel #chats .chat_profile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#container #wrapper #left_panel #chats .chat_profile .chat_profile_info span {
+  font-size: 18px;
+  font-weight: 500;
+}
+#container #wrapper #left_panel #chats .chat_profile .chat_profile_info p {
+  font-size: 14px;
+  color: lightgray;
+}
+#container #wrapper #right_panel {
+  flex: 2;
+  background-color: #ddddf7;
+}
+#container #wrapper #right_panel #chat_info {
+  height: 50px;
+  background-color: #3e3c61;
+  background-color: #5d5b8d;
+  display: flex;
+  align-items: center;
+}
+#container #wrapper #right_panel #chat_info img {
+  width: 27px;
+  height: 27px;
+  background-color: lightgray;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-left: 10px;
+}
+#container #wrapper #right_panel #chat_info span {
+  color: lightgray;
+  font-size: 17px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+#container #wrapper #right_panel .messages {
+  height: 82%;
+  padding: 7px;
+  font-size: 15px;
+  overflow-y: scroll;
+}
+#container #wrapper #right_panel .messages .message {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-family: Roboto;
+}
+#container #wrapper #right_panel .messages .message .message-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: gray;
+}
+#container #wrapper #right_panel .messages .message .message-info img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#container #wrapper #right_panel .messages .message .message-info span {
+  font-size: 11px;
+}
+#container #wrapper #right_panel .messages .message .message-content {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+#container #wrapper #right_panel .messages .message .message-content p {
+  background-color: white;
+  padding: 5px;
+  border-radius: 0px 10px 10px 10px;
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+#container #wrapper #right_panel .messages .message.owner {
+  flex-direction: row-reverse;
+}
+#container #wrapper #right_panel .messages .message.owner .message-content {
+  align-items: flex-end;
+}
+#container #wrapper #right_panel .messages .message.owner .message-content p {
+  background-color: #8da4f1;
+  color: white;
+  border-radius: 10px 0px 10px 10px;
+}
+#container #wrapper #right_panel #reply_section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 20px;
+}
+#container #wrapper #right_panel #reply_section input {
+  height: 38px;
+  /* background-color: #3e3c61;  changable */
+  background-color: white;
+  padding: 10px 15px;
+  width: 95%;
+  border-radius: 25px;
+  overflow: hidden;
+  border: none;
+  font-size: 15px;
+}
+#container #wrapper #right_panel #reply_section input::-moz-placeholder {
+  color: #b4b4b4;
+}
+#container #wrapper #right_panel #reply_section input::placeholder {
+  color: #b4b4b4;
+}
+#container #wrapper #right_panel #reply_section input:focus {
+  outline: none;
+}
+#container #wrapper #right_panel #reply_section button {
+  color: #2f2d52;
+  font-size: 22px;
+  margin-left: 5px;
+  padding: 7px 9px;
+  border-radius: 50%;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+#container #wrapper #right_panel #reply_section button:hover {
+  background-color: white;
+}
