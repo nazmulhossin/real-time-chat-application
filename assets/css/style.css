@@ -24,7 +24,7 @@
   border-radius: 10px;
   overflow: hidden;
   font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
-  box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 3px 15px 0px rgba(0, 0, 0, 0.5);
 }
 #container #wrapper #left_panel {
   flex: 1;
@@ -63,7 +63,7 @@
 #container #wrapper #left_panel #left_panel_header #user_profile button {
   background-color: #5d5b8d;
   color: #ddddf7;
-  font-size: 13.5px;
+  font-size: 14px;
   padding: 4px;
   border: none;
   border-radius: 3px;
@@ -71,6 +71,7 @@
 }
 #container #wrapper #left_panel #left_panel_header #user_profile button:hover {
   background-color: #7674b2;
+  color: white;
 }
 #container #wrapper #left_panel #search {
   margin: 5px 7px;
@@ -136,6 +137,7 @@
   background-color: #5d5b8d;
   display: flex;
   align-items: center;
+  display: none;
 }
 #container #wrapper #right_panel #chat_info img {
   width: 27px;
@@ -157,6 +159,7 @@
   padding: 7px;
   font-size: 15px;
   overflow-y: scroll;
+  display: none;
 }
 #container #wrapper #right_panel .messages .message {
   display: flex;
@@ -209,6 +212,7 @@
   align-items: center;
   justify-content: center;
   margin: 15px 20px;
+  display: none;
 }
 #container #wrapper #right_panel #reply_section input {
   height: 38px;

@@ -9,6 +9,29 @@
     src: url(../webfonts/Roboto-Regular.ttf);
 }
 
+#successful_msg {
+    background-color: white;
+    padding: 10px;
+    font-size: 19px;
+    border-radius: 5px;
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #047604;
+
+    i, b {
+        color: #047604;
+    }
+
+    a {
+        text-decoration: none;
+        &:hover {
+            color: #ce0505;
+        }
+    }
+}
+
 #form_container {
     background-color: #a7bcff;
     background-color: #7f7dc5;
@@ -23,7 +46,7 @@
 
     #form_wrapper {
         background-color: white;
-        padding: 20px 55px;
+        padding: 20px 50px;
         border-radius: 5px;
         display: flex;
         flex-direction: column;
@@ -43,13 +66,14 @@
         form {
             display: flex;
             flex-direction: column;
-            width: 300px;
+            width: 315px;
             gap: 3px;
     
             input {
                 padding: 10px;
                 border-radius: 3px;
                 border: solid 1px gray;
+                font-size: 15px;
 
                 &::placeholder {
                     color: rgb(175, 175, 175);
@@ -67,14 +91,23 @@
                 background-color: #3e3c61;
                 cursor: pointer;
             }
+
+            .error {
+                font-size: 12px;
+                color: red;
+            }
         }
 
         p {
             color: #6d6d6d;
-            font-size: 15px;
+            font-size: 16px;
 
             a {
                 text-decoration: none;
+                
+                &:hover {
+                    color: #ce0505;
+                }   
             }
         }
     }

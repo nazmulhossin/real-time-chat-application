@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(!isset($_SESSION["id"])) {
+        header("Location: login");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniChat</title>
     <?php require 'inc/config.php'; ?>
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo ($ROOT_DIRECTORY."/assets/img/favicon 1.png");?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo ($ROOT_DIRECTORY."/assets/css/all.min.css");?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo ($ROOT_DIRECTORY."/assets/css/fontawesome.min.css");?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo ($ROOT_DIRECTORY."/assets/css/style.css");?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo ($ROOT_DIRECTORY."/assets/css/responsive.css");?>">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon 1.png">
+    <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
     <div id="container">
@@ -19,15 +26,16 @@
                 <div id="left_panel_header">
                     <span id="logo">UniChat</span>
                     <div id="user_profile">
-                        <img src="assets/img/user3.jpg" alt=""> <span>Md. Nazmul Hossain</span> <button>Logout</button>
+                        <img src="assets/img/user3.jpg" alt=""> <span><?php echo $_SESSION["name"]; ?></span> <a href="logout"><button>Logout</button></a>
                     </div>
                 </div>
                 
                 <div id="search">
-                    <label for=""><i class="fa fa-search" aria-hidden="true"></i></label> <input type="text" placeholder="Search a user..." />					
+                    <label for=""><i class="fa-solid fa-magnifying-glass"></i></label> <input type="text" placeholder="Find a user..." />					
                 </div>
 
                 <div id="chats">
+                    <!--
                     <div class="chat_profile">
                         <img src="assets/img/user5.jpg" alt="">
                         <div class="chat_profile_info">
@@ -43,11 +51,11 @@
                             <p>Hi!</p>
                         </div>
                     </div>
+                    -->
                 </div>
             </div>
 
             <div id="right_panel">
-                
                 <div id="chat_info">
                     <img src="assets/img/user5.jpg" alt=""> <span>Sujan Roy</span>
                 </div>
