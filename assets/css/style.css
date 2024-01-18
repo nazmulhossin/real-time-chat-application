@@ -73,31 +73,78 @@
   background-color: #7674b2;
   color: white;
 }
-#container #wrapper #left_panel #search {
+#container #wrapper #left_panel #find_user {
   margin: 5px 7px;
+  position: relative;
+}
+#container #wrapper #left_panel #find_user #search {
   border-radius: 20px;
   overflow: hidden;
 }
-#container #wrapper #left_panel #search label {
+#container #wrapper #left_panel #find_user #search label {
   position: absolute;
   color: lightgray;
   margin: 7px 0 0 10px;
 }
-#container #wrapper #left_panel #search input {
+#container #wrapper #left_panel #find_user #search input {
   padding: 10px 0 10px 35px;
   width: 100%;
   border: none;
   background-color: #2f2d52;
   color: white;
 }
-#container #wrapper #left_panel #search input::-moz-placeholder {
+#container #wrapper #left_panel #find_user #search input::-moz-placeholder {
   color: lightgray;
 }
-#container #wrapper #left_panel #search input::placeholder {
+#container #wrapper #left_panel #find_user #search input::placeholder {
   color: lightgray;
 }
-#container #wrapper #left_panel #search input:focus {
+#container #wrapper #left_panel #find_user #search input:focus {
   outline: none;
+}
+#container #wrapper #left_panel #find_user #search_result {
+  background-color: #ffffff;
+  margin-top: 3px;
+  border-radius: 7px;
+  position: absolute;
+  width: 100%;
+}
+#container #wrapper #left_panel #find_user #search_result ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 5px;
+}
+#container #wrapper #left_panel #find_user #search_result ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px;
+  cursor: pointer;
+}
+#container #wrapper #left_panel #find_user #search_result ul li img {
+  height: 40px;
+  width: 40px;
+  background-color: lightgray;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#container #wrapper #left_panel #find_user #search_result ul li span {
+  font-size: 18px;
+}
+#container #wrapper #left_panel #find_user #search_result ul li:hover {
+  border-radius: 7px;
+  background-color: #2f2d52;
+  color: lightgray;
+}
+#container #wrapper #left_panel #find_user #search_result ul .no-user-name {
+  cursor: default;
+}
+#container #wrapper #left_panel #find_user #search_result ul .no-user-name:hover {
+  color: #000000;
+  background-color: #ffffff;
 }
 #container #wrapper #left_panel #chats .chat_profile {
   display: flex;
@@ -121,7 +168,6 @@
 }
 #container #wrapper #left_panel #chats .chat_profile .chat_profile_info span {
   font-size: 18px;
-  font-weight: 500;
 }
 #container #wrapper #left_panel #chats .chat_profile .chat_profile_info p {
   font-size: 14px;

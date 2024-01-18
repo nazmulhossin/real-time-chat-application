@@ -30,12 +30,16 @@
                     </div>
                 </div>
                 
-                <div id="search">
-                    <label for=""><i class="fa-solid fa-magnifying-glass"></i></label> <input type="text" placeholder="Find a user..." />					
+                <div id="find_user">
+                    <div id="search">
+                        <label for=""><i class="fa-solid fa-magnifying-glass"></i></label> <input type="text" placeholder="Find a user..." onkeyup="loadData('inc/find_user.php?q='+this.value, findUser)"/>					
+                    </div>
+
+                    <div id="search_result">
+                    </div>
                 </div>
 
                 <div id="chats">
-                    <!--
                     <div class="chat_profile">
                         <img src="assets/img/user5.jpg" alt="">
                         <div class="chat_profile_info">
@@ -51,7 +55,6 @@
                             <p>Hi!</p>
                         </div>
                     </div>
-                    -->
                 </div>
             </div>
 
@@ -108,5 +111,6 @@
         </div>
     </div>
     
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
