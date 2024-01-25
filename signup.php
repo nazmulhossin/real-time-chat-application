@@ -10,13 +10,13 @@
     $name = $email = $emailError = $passwordError = $successful_msg = "" ;
     
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {
-        $name = $DB_connection -> real_escape_string($_POST["name"]);
-        $email =  $DB_connection -> real_escape_string($_POST["email"]);
-        $password = $DB_connection -> real_escape_string($_POST["password"]);
-        $confirmPassword = $DB_connection -> real_escape_string($_POST["confirmPassword"]);
+        $name = $conn -> real_escape_string($_POST["name"]);
+        $email =  $conn -> real_escape_string($_POST["email"]);
+        $password = $conn -> real_escape_string($_POST["password"]);
+        $confirmPassword = $conn -> real_escape_string($_POST["confirmPassword"]);
 
         $sql = "SELECT email FROM user_info WHERE email='".$email."'";
-        $result = $DB_connection -> query($sql);
+        $result = $conn -> query($sql);
         
         if(!preg_match("/^[A-Za-z0-9]+$/", $password))
             $passwordError = "Password must contain at least one alphabet or number.";
@@ -27,13 +27,13 @@
         else {
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO user_info (name, email, password) VALUES ('$name', '$email', '$password_hash')";
-            if($DB_connection -> query($sql) == TRUE) {
+            if($conn -> query($sql) == TRUE) {
                 $name = $email = "";
                 $successful_msg = '<div id="successful_msg"><i class="fa-solid fa-circle-check"></i> <b>Congratulations!</b> Your account has been successfully created. Please <a href="login">login</a> to continue...</div>';
                 header("refresh: 5; url= login");
             }
             else
-                echo "Error: " . $DB_connection -> error;            
+                echo "Error: " . $conn -> error;            
         }
     }
 ?>

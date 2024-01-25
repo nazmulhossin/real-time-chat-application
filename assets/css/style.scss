@@ -12,7 +12,7 @@ $color5: #060;
 
 @font-face {
     font-family: Roboto;
-    src: url(../webfonts/Roboto-Regular.ttf);
+    src: url(../fonts/Roboto-Regular.ttf);
 }
 
 #container {
@@ -120,7 +120,6 @@ $color5: #060;
                 #search_result {
                     background-color: #ffffff;
                     margin-top: 3px;
-                    
                     border-radius: 7px;
                     position: absolute;
                     width: 100%;
@@ -154,8 +153,8 @@ $color5: #060;
 
                             &:hover {
                                 border-radius: 7px;
-                                background-color: #2f2d52;
-                                color: lightgray;
+                                background-color: #5d5b8d;
+                                color: #ffffff;
                             }
                         }
 
@@ -167,41 +166,49 @@ $color5: #060;
                                 background-color: #ffffff;
                             }
                         }
-                    }   
+                    }                    
                 }
             }
     
-            #chats {
-                .chat_profile {
-                    display: flex;
-                    align-items: center;
-                    margin: 0px 7px;
-                    padding: 10px 7px;
+            #chat_list {
+                ul {
+                    list-style-type: none;
 
-                    gap: 10px;
-                    color: white;
-                    cursor: pointer;
-    
-                    &:hover {
-                        border-radius: 10px;
-                        background-color: #2f2d52;
-                    }
-                    
-                    img {
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        object-fit: cover;
-                    }
-    
-                    .chat_profile_info {
-                        span {
-                            font-size: 18px;
+                    li {
+                        display: flex;
+                        align-items: center;
+                        margin: 0px 7px;
+                        padding: 10px 7px;
+                        gap: 10px;
+                        color: white;
+                        cursor: pointer;
+
+                        img {
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 50%;
+                            object-fit: cover;
                         }
-                        
-                        p {
-                            font-size: 14px;
-                            color: lightgray;
+
+                        div {
+                            span {
+                                font-size: 18px;
+                            }
+                            
+                            p {
+                                font-size: 14px;
+                                color: lightgray;
+                            }
+                        }
+
+                        &:hover {
+                            border-radius: 10px;
+                            background-color: #5d5b8d;
+                        }
+
+                        &.active {
+                            border-radius: 10px;
+                            background-color: #2f2d52;
                         }
                     }
                 }
@@ -210,134 +217,169 @@ $color5: #060;
     
         #right_panel {
             flex: 2;
-            background-color: #ddddf7;
-    
-            #chat_info {
-                height: 50px;
-                background-color: #3e3c61;
-                background-color: #5d5b8d;
-                display: flex;
-                align-items: center;
-                display: none;
-                    
-                img {
-                    width: 27px;
-                    height: 27px;
-                    background-color: lightgray;
-                    border-radius: 50%;
-                    object-fit: cover;
-                    margin-left: 10px;
-                }
-    
-                span {
-                    color: lightgray;
-                    font-size: 17px;
-                    font-weight: bold;
-                    margin-left: 10px;
+            background-color: #ffffff;
+
+            #no_chat {
+                position: relative;
+                height: 100%;
+
+                h1 {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);  
+                    text-align: center;
+                    width: 100%;
+                    color: #ababab;
                 }
             }
-    
-            .messages {
-                height: 82%;
-                padding: 7px;
-                font-size: 15px;
-                overflow-y: scroll;
-                display: none;
 
-                .message {
+            #chatting_section {                
+                height: 100%;
+
+                #chat_info {
+                    height: 50px;
+                    background-color: #3e3c61;
+                    background-color: #5d5b8d;
                     display: flex;
-                    gap: 10px;
-                    margin-bottom: 15px;
-                    font-family: Roboto;
-
-                    .message-info {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        color: gray;
-
-                        img {
-                            width: 35px;
-                            height: 35px;
-                            border-radius: 50%;
-                            object-fit: cover;
-                        }
-
-                        span {
-                            font-size: 11px;
-                        }
+                    align-items: center;
+                        
+                    img {
+                        width: 27px;
+                        height: 27px;
+                        background-color: lightgray;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        margin-left: 10px;
                     }
-
-                    .message-content {
-                        max-width: 80%;
-                        display: flex;
-                        flex-direction: column;
-                        gap: 3px;
-
-                        p {
-                            background-color: white;
-                            padding: 5px;
-                            border-radius: 0px 10px 10px 10px;
-                            max-width: max-content;
-                        }
+        
+                    span {
+                        color: lightgray;
+                        font-size: 17px;
+                        font-weight: bold;
+                        margin-left: 10px;
                     }
+                }
 
-                    &.owner {
-                        flex-direction: row-reverse;
+                #messages {
+                    height: 82%;
+                    padding: 7px;
+                    overflow: auto;
 
-                        .message-content {
-                            align-items: flex-end;
+                    .message-container {
+                        display: flex;
+                        gap: 10px;
+                        margin-bottom: 15px;
+                        font-family: Roboto;
 
-                            p {
-                                background-color: #8da4f1;
-                                color: white;
-                                border-radius: 10px 0px 10px 10px;
+                        .user-img {
+                            img {
+                                width: 35px;
+                                height: 35px;
+                                border-radius: 50%;
+                                object-fit: cover;
                             }
-                        }  
+                        }
+    
+                        .message-wrapper {
+                            max-width: 80%;
+
+                            .message-content {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 3px;
+
+                                p {
+                                    font-size: 15px;
+                                    background-color: white;
+                                    background-color: #f0f0f0;
+                                    background-color: #d3d3d3;
+                                    
+                                    padding: 8px;
+                                    border-radius: 0px 10px 10px 10px;
+                                    max-width: max-content;
+                                }
+                            }
+
+                            .message-date {
+                                font-size: 0;
+
+                                span {
+                                    font-size: 10.5px;
+                                    color: gray; 
+                                }
+                            }
+                        }
+                         
+                        &.owner {
+                            flex-direction: row-reverse;
+                            
+
+                            .message-wrapper {
+                                .message-content {
+                                    align-items: flex-end;
+        
+                                    p {
+                                        background-color: #8da4f1;
+                                        background-color: #0084ff;
+                                        background-color: #2f2d52;
+                                        background-color: #3e3c61;
+                                        background-color: #5d5b8d;
+                                        
+                                        color: white;
+                                        border-radius: 10px 0px 10px 10px;
+                                    }
+                                }
+
+                                .message-date {
+                                    text-align: right;
+                                }
+                            }
+                        }
                     }
                 }
-            }
 
-            #reply_section {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 15px 20px;
-                display: none;
-                
-                input {
-                    height: 38px;
-                    /* background-color: #3e3c61;  changable */
-                    background-color: white;    
-                    padding: 10px 15px;
-                    width: 95%;
-                    border-radius: 25px;
-                    overflow: hidden;
-                    border: none;
-                    font-size: 15px;
+                #reply_section {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 15px 20px;
                     
-                    &::placeholder {
-                        color: #b4b4b4;
+                    textarea {
+                        resize: none;
+                        height: 38px;
+                        /* background-color: #3e3c61;  changable */
+                        background-color: lightgray;    
+                        padding: 10px 15px;
+                        width: 95%;
+                        border-radius: 25px;
+                        border: none;
+                        font-size: 15px;
+                        color: #000000;
+                        
+                        &::placeholder {
+                            color: #808080;
+                        }
                     }
-                }
-
-                input:focus {
-                    outline: none;
-                }
-
-                button {
-                    color: #2f2d52;
-                    font-size: 22px;
-                    margin-left: 5px;
-                    padding: 7px 9px;
-                    border-radius: 50%;
-                    border: none;
-                    background-color: inherit;
-                    cursor: pointer;
-                }
-
-                button:hover {
-                    background-color: white;
+    
+                    textarea:focus {
+                        outline: none;
+                    }
+    
+                    button {
+                        color: #2f2d52;
+                        font-size: 22px;
+                        margin-left: 5px;
+                        padding: 7px 9px;
+                        border-radius: 50%;
+                        border: none;
+                        background-color: inherit;
+                        cursor: pointer;
+                    }
+    
+                    button:hover {
+                        background-color: white;
+                    }
                 }
             }
         }

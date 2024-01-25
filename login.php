@@ -10,11 +10,11 @@
     $error_msg = $email = $password = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
-        $email = $DB_connection -> real_escape_string($_POST["email"]);
-        $password = $DB_connection -> real_escape_string($_POST["password"]);
+        $email = $conn -> real_escape_string($_POST["email"]);
+        $password = $conn -> real_escape_string($_POST["password"]);
 
         $sql = "SELECT userid, name, email, password FROM user_info WHERE email='$email'";
-        $result = $DB_connection -> query($sql);
+        $result = $conn -> query($sql);
         $row = $result -> fetch_assoc();
 
         if($result -> num_rows > 0 && password_verify($password, $row["password"])) {

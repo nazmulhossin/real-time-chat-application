@@ -4,6 +4,8 @@
         header("Location: login");
         exit;
     }
+
+    require_once('inc/db_connection.php');
 ?>
 
 <!DOCTYPE html>
@@ -39,74 +41,26 @@
                     </div>
                 </div>
 
-                <div id="chats">
-                    <div class="chat_profile">
-                        <img src="assets/img/user5.jpg" alt="">
-                        <div class="chat_profile_info">
-                            <span>Sujan Roy</span>
-                            <p>Hello!</p>
-                        </div>
-                    </div>
-
-                    <div class="chat_profile">
-                        <img src="assets/img/user4.jpg" alt="">
-                        <div class="chat_profile_info">
-                            <span>Unknown Girl</span>
-                            <p>Hi!</p>
-                        </div>
-                    </div>
+                <div id="chat_list">
+                    <ul id="chat_profiles">
+                        <?php
+                            $sql = 'SELECT DISTINCT user_info.userid, user_info.name FROM user_info JOIN messages ON user_info.userid = messages.sender OR user_info.userid = messages.receiver WHERE (messages.sender = '.$_SESSION["id"].' OR messages.receiver = '.$_SESSION["id"].') AND NOT user_info.userid = '.$_SESSION["id"].' ORDER BY messages.date DESC';
+                            $result = $conn -> query($sql);
+                            while($row = $result -> fetch_assoc()) {
+                                echo '<li data-userid="'.$row["userid"].'" onclick="activeUser(this); loadData(\'inc/display_messages.php?uid=\'+this.dataset.userid, displayMessages)"><img src="assets/img/user5.jpg" alt=""><div><span>'.$row["name"].'</span><p>Hi!</p></div></li>';
+                            }
+                        ?>
+                    </ul>
                 </div>
             </div>
 
             <div id="right_panel">
-                <div id="chat_info">
-                    <img src="assets/img/user5.jpg" alt=""> <span>Sujan Roy</span>
+                <div id="no_chat">
+                    <h1>Choose a chat to start the conversation</h1>
                 </div>
 
-                <div class="messages" id="conversation">
-                <!--<h1>Choose a chat to start the conversation</h1>-->
-
-                    <div class="message owner">
-                        <div class="message-info">
-                            <img src="assets/img/user3.jpg" alt="">
-                            <span>Just now</span>
-                        </div>
-
-                        <div class="message-content">
-                            <p>Hello!</p>
-                            <img src="" alt="">
-                        </div>
-                    </div>
-
-                    <div class="message">
-                        <div class="message-info">
-                            <img src="assets/img/user5.jpg" alt="">
-                            <span>Just now</span>
-                        </div>
-
-                        <div class="message-content">
-                            <p>Hi!</p>
-                            <img src="" alt="">
-                        </div>
-                    </div>
-
-                    <div class="message">
-                        <div class="message-info">
-                            <img src="assets/img/user5.jpg" alt="">
-                            <span>Just now</span>
-                        </div>
-
-                        <div class="message-content">
-                            <p>This is Sujan Roy</p>
-                            <img src="assets/img/user5.jpg" alt="">
-                        </div>
-                    </div>
+                <div id="chatting_section" style="display: none;">
                 </div>
-
-                <div id="reply_section">
-                    <input type="text" class="chatMessage" id="message_input" placeholder="Write your message..." />
-					<button class="submit chatButton" id="chatButton"><i class="fa fa-paper-plane"></i></button>
-				</div>
             </div>
         </div>
     </div>

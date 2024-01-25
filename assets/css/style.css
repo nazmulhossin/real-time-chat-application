@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: Roboto;
-  src: url(../webfonts/Roboto-Regular.ttf);
+  src: url(../fonts/Roboto-Regular.ttf);
 }
 #container {
   background-color: #a7bcff;
@@ -136,8 +136,8 @@
 }
 #container #wrapper #left_panel #find_user #search_result ul li:hover {
   border-radius: 7px;
-  background-color: #2f2d52;
-  color: lightgray;
+  background-color: #5d5b8d;
+  color: #ffffff;
 }
 #container #wrapper #left_panel #find_user #search_result ul .no-user-name {
   cursor: default;
@@ -146,7 +146,10 @@
   color: #000000;
   background-color: #ffffff;
 }
-#container #wrapper #left_panel #chats .chat_profile {
+#container #wrapper #left_panel #chat_list ul {
+  list-style-type: none;
+}
+#container #wrapper #left_panel #chat_list ul li {
   display: flex;
   align-items: center;
   margin: 0px 7px;
@@ -155,37 +158,56 @@
   color: white;
   cursor: pointer;
 }
-#container #wrapper #left_panel #chats .chat_profile:hover {
-  border-radius: 10px;
-  background-color: #2f2d52;
-}
-#container #wrapper #left_panel #chats .chat_profile img {
+#container #wrapper #left_panel #chat_list ul li img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-#container #wrapper #left_panel #chats .chat_profile .chat_profile_info span {
+#container #wrapper #left_panel #chat_list ul li div span {
   font-size: 18px;
 }
-#container #wrapper #left_panel #chats .chat_profile .chat_profile_info p {
+#container #wrapper #left_panel #chat_list ul li div p {
   font-size: 14px;
   color: lightgray;
 }
+#container #wrapper #left_panel #chat_list ul li:hover {
+  border-radius: 10px;
+  background-color: #5d5b8d;
+}
+#container #wrapper #left_panel #chat_list ul li.active {
+  border-radius: 10px;
+  background-color: #2f2d52;
+}
 #container #wrapper #right_panel {
   flex: 2;
-  background-color: #ddddf7;
+  background-color: #ffffff;
 }
-#container #wrapper #right_panel #chat_info {
+#container #wrapper #right_panel #no_chat {
+  position: relative;
+  height: 100%;
+}
+#container #wrapper #right_panel #no_chat h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  color: #ababab;
+}
+#container #wrapper #right_panel #chatting_section {
+  height: 100%;
+}
+#container #wrapper #right_panel #chatting_section #chat_info {
   height: 50px;
   background-color: #3e3c61;
   background-color: #5d5b8d;
   display: flex;
   align-items: center;
-  display: none;
 }
-#container #wrapper #right_panel #chat_info img {
+#container #wrapper #right_panel #chatting_section #chat_info img {
   width: 27px;
   height: 27px;
   background-color: lightgray;
@@ -194,93 +216,101 @@
      object-fit: cover;
   margin-left: 10px;
 }
-#container #wrapper #right_panel #chat_info span {
+#container #wrapper #right_panel #chatting_section #chat_info span {
   color: lightgray;
   font-size: 17px;
   font-weight: bold;
   margin-left: 10px;
 }
-#container #wrapper #right_panel .messages {
+#container #wrapper #right_panel #chatting_section #messages {
   height: 82%;
   padding: 7px;
-  font-size: 15px;
-  overflow-y: scroll;
-  display: none;
+  overflow: auto;
 }
-#container #wrapper #right_panel .messages .message {
+#container #wrapper #right_panel #chatting_section #messages .message-container {
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
   font-family: Roboto;
 }
-#container #wrapper #right_panel .messages .message .message-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: gray;
-}
-#container #wrapper #right_panel .messages .message .message-info img {
+#container #wrapper #right_panel #chatting_section #messages .message-container .user-img img {
   width: 35px;
   height: 35px;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-#container #wrapper #right_panel .messages .message .message-info span {
-  font-size: 11px;
-}
-#container #wrapper #right_panel .messages .message .message-content {
+#container #wrapper #right_panel #chatting_section #messages .message-container .message-wrapper {
   max-width: 80%;
+}
+#container #wrapper #right_panel #chatting_section #messages .message-container .message-wrapper .message-content {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
-#container #wrapper #right_panel .messages .message .message-content p {
+#container #wrapper #right_panel #chatting_section #messages .message-container .message-wrapper .message-content p {
+  font-size: 15px;
   background-color: white;
-  padding: 5px;
+  background-color: #f0f0f0;
+  background-color: #d3d3d3;
+  padding: 8px;
   border-radius: 0px 10px 10px 10px;
   max-width: -moz-max-content;
   max-width: max-content;
 }
-#container #wrapper #right_panel .messages .message.owner {
+#container #wrapper #right_panel #chatting_section #messages .message-container .message-wrapper .message-date {
+  font-size: 0;
+}
+#container #wrapper #right_panel #chatting_section #messages .message-container .message-wrapper .message-date span {
+  font-size: 10.5px;
+  color: gray;
+}
+#container #wrapper #right_panel #chatting_section #messages .message-container.owner {
   flex-direction: row-reverse;
 }
-#container #wrapper #right_panel .messages .message.owner .message-content {
+#container #wrapper #right_panel #chatting_section #messages .message-container.owner .message-wrapper .message-content {
   align-items: flex-end;
 }
-#container #wrapper #right_panel .messages .message.owner .message-content p {
+#container #wrapper #right_panel #chatting_section #messages .message-container.owner .message-wrapper .message-content p {
   background-color: #8da4f1;
+  background-color: #0084ff;
+  background-color: #2f2d52;
+  background-color: #3e3c61;
+  background-color: #5d5b8d;
   color: white;
   border-radius: 10px 0px 10px 10px;
 }
-#container #wrapper #right_panel #reply_section {
+#container #wrapper #right_panel #chatting_section #messages .message-container.owner .message-wrapper .message-date {
+  text-align: right;
+}
+#container #wrapper #right_panel #chatting_section #reply_section {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 15px 20px;
-  display: none;
 }
-#container #wrapper #right_panel #reply_section input {
+#container #wrapper #right_panel #chatting_section #reply_section textarea {
+  resize: none;
   height: 38px;
   /* background-color: #3e3c61;  changable */
-  background-color: white;
+  background-color: lightgray;
   padding: 10px 15px;
   width: 95%;
   border-radius: 25px;
-  overflow: hidden;
   border: none;
   font-size: 15px;
+  color: #000000;
 }
-#container #wrapper #right_panel #reply_section input::-moz-placeholder {
-  color: #b4b4b4;
+#container #wrapper #right_panel #chatting_section #reply_section textarea::-moz-placeholder {
+  color: #808080;
 }
-#container #wrapper #right_panel #reply_section input::placeholder {
-  color: #b4b4b4;
+#container #wrapper #right_panel #chatting_section #reply_section textarea::placeholder {
+  color: #808080;
 }
-#container #wrapper #right_panel #reply_section input:focus {
+#container #wrapper #right_panel #chatting_section #reply_section textarea:focus {
   outline: none;
 }
-#container #wrapper #right_panel #reply_section button {
+#container #wrapper #right_panel #chatting_section #reply_section button {
   color: #2f2d52;
   font-size: 22px;
   margin-left: 5px;
@@ -290,6 +320,6 @@
   background-color: inherit;
   cursor: pointer;
 }
-#container #wrapper #right_panel #reply_section button:hover {
+#container #wrapper #right_panel #chatting_section #reply_section button:hover {
   background-color: white;
 }
