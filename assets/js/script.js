@@ -57,3 +57,22 @@ function handleKeyPress(e) {
         loadData('inc/send_message.php?uid='+document.querySelector(".active").dataset.userid+'&msg='+document.getElementById("message_input").value, sendMessage);
     }        
 }
+
+function loadMessages(xhr) {
+    if(xhr.readyState == 4 && xhr.status == 200) {
+        var messages_container = document.getElementById("messages");
+        const prevHeight = messages_container.scrollHeight;
+        const prevScrollPosition = messages_container.scrollTop + messages_container.clientHeight;
+        messages_container.innerHTML = xhr.responseText;
+
+        // Ensure scroll stays at bottom if it was initially there
+        if(Math.abs(prevHeight - prevScrollPosition) < 3)
+            messages_container.scrollTo(0, messages_container.scrollHeight);
+    }
+}
+
+setInterval(function() {
+    var activeUser = document.querySelector(".active");
+    if(activeUser)
+        loadData('inc/load_messages.php?uid='+activeUser.dataset.userid, loadMessages); 
+}, 1000);
