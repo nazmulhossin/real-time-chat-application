@@ -6,6 +6,11 @@
     }
 
     require_once('inc/db_connection.php');
+    $sql = 'SELECT name, image FROM user_info WHERE userid = '.$_SESSION["id"];
+    $result = $conn -> query($sql);
+    $row = $result -> fetch_assoc();
+    $userName = $row["name"];
+    $userImage = $row["image"];
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +33,7 @@
                 <div id="left_panel_header">
                     <span id="logo">UniChat</span>
                     <div id="user_profile">
-                        <img src="assets/img/user3.jpg" alt=""> <span><?php echo $_SESSION["name"]; ?></span> <a href="logout"><button>Logout</button></a>
+                        <img src="<?php echo $profile_images_folder.$userImage; ?>" alt=""> <span><?php echo $userName; ?></span> <a href="settings"><i class="fa-solid fa-gear"></i></a>
                     </div>
                 </div>
                 
@@ -50,7 +55,13 @@
                                 echo '<li data-userid="'.$row["userid"].'" onclick="activeUser(this); loadData(\'inc/display_messages.php?uid=\'+this.dataset.userid, displayMessages)"><img src="assets/img/user5.jpg" alt=""><div><span>'.$row["name"].'</span><p>Hi!</p></div></li>';
                             }
                         ?>
+
+
                     </ul>
+                </div>
+
+                <div id="logout">
+                    <a href="logout"><span>Logout</span> <i class="fa-solid fa-right-from-bracket"></i></a>
                 </div>
             </div>
 

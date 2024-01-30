@@ -13,13 +13,12 @@
         $email = $conn -> real_escape_string($_POST["email"]);
         $password = $conn -> real_escape_string($_POST["password"]);
 
-        $sql = "SELECT userid, name, email, password FROM user_info WHERE email='$email'";
+        $sql = "SELECT userid, email, password FROM user_info WHERE email='$email'";
         $result = $conn -> query($sql);
         $row = $result -> fetch_assoc();
 
         if($result -> num_rows > 0 && password_verify($password, $row["password"])) {
             $_SESSION["id"] = $row["userid"];
-            $_SESSION["name"] = $row["name"];
             header("location: http://localhost/real-time-chat-application/");
             exit;
         }
@@ -48,7 +47,7 @@
                 <input type="email" name="email" placeholder="E-mail" value="<?php echo $email; ?>" required> <br>
                 <input type="password" name="password" placeholder="Password" value="<?php echo $password; ?>" required> 
                 <span class="error"><?php echo $error_msg ?></span><br>
-                <input type="Submit" name="login" value="Log in"> <br>
+                <input type="Submit" name="login" value="Log in">
             </form>
             <p>Don't have an account? <a href="signup">Sign Up</a> </p>
         </div>

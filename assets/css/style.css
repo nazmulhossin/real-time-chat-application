@@ -29,6 +29,7 @@
 #container #wrapper #left_panel {
   flex: 1;
   background-color: #3e3c61;
+  position: relative;
 }
 #container #wrapper #left_panel #left_panel_header {
   background-color: #2f2d52;
@@ -49,28 +50,21 @@
   align-items: center;
 }
 #container #wrapper #left_panel #left_panel_header #user_profile img {
-  width: 27px;
-  height: 27px;
+  width: 30px;
+  height: 30px;
   background-color: lightgray;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
 }
 #container #wrapper #left_panel #left_panel_header #user_profile span {
-  font-size: 15.5px;
+  font-size: 17px;
   font-weight: bold;
 }
-#container #wrapper #left_panel #left_panel_header #user_profile button {
-  background-color: #5d5b8d;
+#container #wrapper #left_panel #left_panel_header #user_profile i {
   color: #ddddf7;
-  font-size: 14px;
-  padding: 4px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
 }
-#container #wrapper #left_panel #left_panel_header #user_profile button:hover {
-  background-color: #7674b2;
+#container #wrapper #left_panel #left_panel_header #user_profile i:hover {
   color: white;
 }
 #container #wrapper #left_panel #find_user {
@@ -148,6 +142,8 @@
 }
 #container #wrapper #left_panel #chat_list ul {
   list-style-type: none;
+  max-height: 65vh;
+  overflow: auto;
 }
 #container #wrapper #left_panel #chat_list ul li {
   display: flex;
@@ -179,6 +175,30 @@
 #container #wrapper #left_panel #chat_list ul li.active {
   border-radius: 10px;
   background-color: #2f2d52;
+}
+#container #wrapper #left_panel #logout {
+  margin-top: 10px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+#container #wrapper #left_panel #logout a {
+  height: 38px;
+  width: 100%;
+  text-decoration: none;
+  background-color: #2f2d52;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  color: #ddddf7;
+  font-size: 18px;
+  font-weight: bold;
+}
+#container #wrapper #left_panel #logout a:hover {
+  color: white;
+  background-color: #5d5b8d;
 }
 #container #wrapper #right_panel {
   flex: 2;

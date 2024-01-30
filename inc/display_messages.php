@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="message-date">
-                        <span>'.date("M j, Y, H:i A", strtotime($row["date"])).'</span>
+                        <span>'.date("M j, Y, g:i A", strtotime($row["date"])).'</span>
                     </div>
                 </div>
             </div>';

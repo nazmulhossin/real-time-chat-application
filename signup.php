@@ -6,7 +6,7 @@
         exit;
     }
     
-    require 'inc/config.php';  
+    require 'inc/db_connection.php';  
     $name = $email = $emailError = $passwordError = $successful_msg = "" ;
     
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {
@@ -64,7 +64,7 @@
                 <input type="password" name="password" placeholder="Password" required> <br>
                 <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
                 <span class="error"><?php echo $passwordError ?></span><br>
-                <input type="Submit" name="signup" value="Sign Up"> <br>
+                <input type="Submit" name="signup" value="Sign Up">
             </form>
             <p>Already have an account? <a href="login">Log in</a> </p>
         </div>
