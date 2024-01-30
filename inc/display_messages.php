@@ -4,12 +4,20 @@
 
     $sender = $_SESSION["id"];
     $receiver = $_GET["uid"];
-    $sql = "SELECT name FROM user_info WHERE userid = $receiver";
+
+    $sql = "SELECT image FROM user_info WHERE userid = $sender";
     $result = $conn -> query($sql);
     $row = $result -> fetch_assoc();
+    $sender_profile_pic = $row["image"];
+
+    $sql = "SELECT name, image FROM user_info WHERE userid = $receiver";
+    $result = $conn -> query($sql);
+    $row = $result -> fetch_assoc();
+    $receiver_name = $row["name"];
+    $receiver_profile_pic = $row["image"];
 
     echo '<div id="chat_info">
-            <img src="assets/img/user5.jpg" alt=""> <span>'.$row["name"].'</span>
+            <img src="'.$profile_images_folder.$receiver_profile_pic.'" alt=""> <span>'.$receiver_name.'</span>
         </div>';
 
     $sql = "SELECT sender, receiver, message, date FROM messages WHERE (sender = $sender AND receiver = $receiver) OR (sender = $receiver AND receiver = $sender)";
@@ -17,10 +25,10 @@
 
     echo '<div id="messages">';
     while($row = $result -> fetch_assoc()) {
-        if($row["sender"] == $_SESSION["id"])
+        if($row["sender"] == $sender)
             echo '<div class="message-container owner">
                 <div class="user-img">
-                    <img src="assets/img/user3.jpg" alt="">
+                    <img src="'.$profile_images_folder.$sender_profile_pic.'" alt="">
                 </div>
 
                 <div class="message-wrapper">
@@ -38,7 +46,7 @@
         else
             echo '<div class="message-container">
                 <div class="user-img">
-                    <img src="assets/img/user3.jpg" alt="">
+                    <img src="'.$profile_images_folder.$receiver_profile_pic.'" alt="">
                 </div>
 
                 <div class="message-wrapper">
@@ -57,6 +65,6 @@
     echo '</div>';
     echo '<div id="reply_section">
             <textarea id="message_input" placeholder="Write your message..." onkeydown="handleKeyPress(event)"></textarea>
-            <button class="submit chatButton" id="chatButton" onclick="loadData(\'inc/send_message.php?uid=\'+document.querySelector(\'.active\').dataset.userid+\'&msg=\'+document.getElementById(\'message_input\').value, sendMessage)"><i class="fa fa-paper-plane"></i></button>
+            <button class="submit chatButton" id="chatButton" onclick="loadData(\'inc/send_message.php?uid=\'+document.querySelector(\'.active\').id+\'&msg=\'+document.getElementById(\'message_input\').value, sendMessage)"><i class="fa fa-paper-plane"></i></button>
         </div>';
 ?>

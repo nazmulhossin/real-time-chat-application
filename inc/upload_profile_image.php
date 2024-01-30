@@ -4,8 +4,14 @@
     $userid = $_SESSION["id"];
 
     if(isset($_FILES['file']) && !empty($_FILES['file']['name']) && $_FILES['file']['error'] == 0) {
-        // $fileType = $_FILES['file']['type'];
-        // $fileSize = $_FILES['file']['size'];
+        // // Validate file type and size (optional)
+        // if (!in_array($fileType, ['image/jpeg', 'image/png', 'application/pdf'])) {
+        //   die('Invalid file type!');
+        // }
+      
+        // if ($fileSize > 1000000) { // 1 MB limit
+        //   die('File size too large!');
+        // }
 
         $sql = "SELECT image FROM user_info WHERE userid = $userid";
         $result = $conn -> query($sql);
@@ -21,14 +27,5 @@
             if($conn -> query($sql) === TRUE)
                 echo $newFileName;
         }
-
-        // // Validate file type and size (optional)
-        // if (!in_array($fileType, ['image/jpeg', 'image/png', 'application/pdf'])) {
-        //   die('Invalid file type!');
-        // }
-      
-        // if ($fileSize > 1000000) { // 1 MB limit
-        //   die('File size too large!');
-        // }
     }
 ?>

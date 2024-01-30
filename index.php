@@ -49,14 +49,14 @@
                 <div id="chat_list">
                     <ul id="chat_profiles">
                         <?php
-                            $sql = 'SELECT DISTINCT user_info.userid, user_info.name FROM user_info JOIN messages ON user_info.userid = messages.sender OR user_info.userid = messages.receiver WHERE (messages.sender = '.$_SESSION["id"].' OR messages.receiver = '.$_SESSION["id"].') AND NOT user_info.userid = '.$_SESSION["id"].' ORDER BY messages.date DESC';
+                            $sql = 'SELECT DISTINCT user_info.userid, user_info.name, user_info.image FROM user_info JOIN messages ON user_info.userid = messages.sender OR user_info.userid = messages.receiver WHERE (messages.sender = '.$_SESSION["id"].' OR messages.receiver = '.$_SESSION["id"].') AND NOT user_info.userid = '.$_SESSION["id"].' ORDER BY messages.date DESC';
                             $result = $conn -> query($sql);
                             while($row = $result -> fetch_assoc()) {
-                                echo '<li data-userid="'.$row["userid"].'" onclick="activeUser(this); loadData(\'inc/display_messages.php?uid=\'+this.dataset.userid, displayMessages)"><img src="assets/img/user5.jpg" alt=""><div><span>'.$row["name"].'</span><p>Hi!</p></div></li>';
+                                echo '<li id="'.$row["userid"].'" onclick="activeUser(this); loadData(\'inc/display_messages.php?uid=\'+this.id, displayMessages)"><img src="'.$profile_images_folder.$row["image"].'" alt=""><div><span>'.$row["name"].'</span><p>Hi!</p></div></li>';
                             }
                         ?>
 
-
+                        <li class="hidden-user" style="display:none;"><img src="" alt=""><div><span>Name</span><p>Latest Message</p></div></li>';
                     </ul>
                 </div>
 

@@ -7,7 +7,4 @@
     // check connection
     if($conn -> connect_error)
         die("Connection failed: " . $conn -> connect_error);
-
-    // for encode and decode char
-    //$conn -> set_charset("utf8");
 ?>

@@ -6,6 +6,16 @@
     $receiver = $_GET["uid"];
     $message = $_GET["msg"];
 
+    $sql = "SELECT image FROM user_info WHERE userid = $sender";
+    $result = $conn -> query($sql);
+    $row = $result -> fetch_assoc();
+    $sender_profile_pic = $row["image"];
+
+    $sql = "SELECT image FROM user_info WHERE userid = $receiver";
+    $result = $conn -> query($sql);
+    $row = $result -> fetch_assoc();
+    $receiver_profile_pic = $row["image"];
+
     if(!isset($message) || empty($message))
         exit;
 
@@ -23,7 +33,7 @@
         if($row["sender"] == $sender)
             echo '<div class="message-container owner">
                 <div class="user-img">
-                    <img src="assets/img/user3.jpg" alt="">
+                    <img src="'.$profile_images_folder.$sender_profile_pic.'" alt="">
                 </div>
 
                 <div class="message-wrapper">
@@ -41,7 +51,7 @@
         else
             echo '<div class="message-container">
                 <div class="user-img">
-                    <img src="assets/img/user3.jpg" alt="">
+                    <img src="'.$profile_images_folder.$receiver_profile_pic.'" alt="">
                 </div>
 
                 <div class="message-wrapper">

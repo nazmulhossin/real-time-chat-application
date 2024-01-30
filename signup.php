@@ -6,7 +6,7 @@
         exit;
     }
     
-    require 'inc/db_connection.php';  
+    require_once 'inc/db_connection.php';  
     $name = $email = $emailError = $passwordError = $successful_msg = "" ;
     
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {

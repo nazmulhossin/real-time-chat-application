@@ -15,13 +15,21 @@ function findUser(xhr) {
     }
 }
 
-function addToChatList(xhr) {
-    if(xhr.readyState == 4 && xhr.status == 200) {
-        var html = xhr.responseText;
-        document.getElementById("chat_profiles").insertAdjacentHTML("afterbegin", html);
-        document.querySelector("#search input").value = "";
-        document.getElementById("search_result").style.display = "none";
+function openMessageBox(userid) {
+    document.querySelector("#search input").value = "";
+    document.getElementById("search_result").style.display = "none";
+    document.querySelector(".active")?.classList.remove("active");
+    var ele = document.getElementById(userid);
+    
+    if(ele)
+        ele.classList.add("active");
+    else {
+        var unknown_user = document.querySelector(".hidden-user");
+        unknown_user.id = userid;
+        unknown_user.classList.add("active");
     }
+        
+    loadData('inc/display_messages.php?uid='+userid, displayMessages);
 }
 
 function displayMessages(xhr) {
@@ -54,7 +62,7 @@ function sendMessage(xhr) {
 function handleKeyPress(e) {
     if(e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();     // Prevent the default behavior (line break)
-        loadData('inc/send_message.php?uid='+document.querySelector(".active").dataset.userid+'&msg='+document.getElementById("message_input").value, sendMessage);
+        loadData('inc/send_message.php?uid='+document.querySelector(".active").id+'&msg='+document.getElementById("message_input").value, sendMessage);
     }        
 }
 
@@ -74,5 +82,5 @@ function loadMessages(xhr) {
 setInterval(function() {
     var activeUser = document.querySelector(".active");
     if(activeUser)
-        loadData('inc/load_messages.php?uid='+activeUser.dataset.userid, loadMessages); 
+        loadData('inc/load_messages.php?uid='+activeUser.id, loadMessages); 
 }, 1000);

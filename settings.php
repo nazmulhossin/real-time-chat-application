@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require 'inc/db_connection.php';
+    require_once 'inc/db_connection.php';
     $userid = $_SESSION["id"];
     $sql = "SELECT name, password, image FROM user_info WHERE userid = $userid";
     $result = $conn -> query($sql);
