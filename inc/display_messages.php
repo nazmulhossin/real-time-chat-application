@@ -65,6 +65,6 @@
     echo '</div>';
     echo '<div id="reply_section">
             <textarea id="message_input" placeholder="Write your message..." onkeydown="handleKeyPress(event)"></textarea>
-            <button class="submit chatButton" id="chatButton" onclick="loadData(\'inc/send_message.php?uid=\'+document.querySelector(\'.active\').id+\'&msg=\'+document.getElementById(\'message_input\').value, sendMessage)"><i class="fa fa-paper-plane"></i></button>
+            <button class="submit chatButton" id="chatButton" onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button>
         </div>';
 ?>

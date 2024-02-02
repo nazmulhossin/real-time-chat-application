@@ -9,8 +9,6 @@
   src: url(../fonts/Roboto-Regular.ttf);
 }
 #container {
-  background-color: #a7bcff;
-  background-color: #928fed;
   background-color: #8785d1;
   height: 100vh;
   display: flex;
@@ -144,6 +142,7 @@
   list-style-type: none;
   max-height: 65vh;
   overflow: auto;
+  margin-right: 4px;
 }
 #container #wrapper #left_panel #chat_list ul li {
   display: flex;
@@ -171,11 +170,18 @@
 }
 #container #wrapper #left_panel #chat_list ul li:hover {
   border-radius: 10px;
-  background-color: #5d5b8d;
+  background-color: #68669e;
 }
 #container #wrapper #left_panel #chat_list ul li.active {
   border-radius: 10px;
   background-color: #2f2d52;
+}
+#container #wrapper #left_panel #chat_list ul::-webkit-scrollbar {
+  width: 10px;
+}
+#container #wrapper #left_panel #chat_list ul::-webkit-scrollbar-thumb {
+  background-color: #68669e;
+  border-radius: 10px;
 }
 #container #wrapper #left_panel #logout {
   margin-top: 10px;
@@ -223,14 +229,13 @@
 }
 #container #wrapper #right_panel #chatting_section #chat_info {
   height: 50px;
-  background-color: #3e3c61;
   background-color: #5d5b8d;
   display: flex;
   align-items: center;
 }
 #container #wrapper #right_panel #chatting_section #chat_info img {
-  width: 27px;
-  height: 27px;
+  width: 30px;
+  height: 30px;
   background-color: lightgray;
   border-radius: 50%;
   -o-object-fit: cover;
@@ -262,7 +267,7 @@
      object-fit: cover;
 }
 #container #wrapper #right_panel #chatting_section #messages .message-container .message-wrapper {
-  max-width: 80%;
+  max-width: 67%;
 }
 #container #wrapper #right_panel #chatting_section #messages .message-container .message-wrapper .message-content {
   display: flex;
@@ -271,13 +276,12 @@
 }
 #container #wrapper #right_panel #chatting_section #messages .message-container .message-wrapper .message-content p {
   font-size: 15px;
-  background-color: white;
-  background-color: #f0f0f0;
   background-color: #d3d3d3;
   padding: 8px;
   border-radius: 0px 10px 10px 10px;
   max-width: -moz-max-content;
   max-width: max-content;
+  white-space: pre-wrap;
 }
 #container #wrapper #right_panel #chatting_section #messages .message-container .message-wrapper .message-date {
   font-size: 0;
@@ -293,10 +297,6 @@
   align-items: flex-end;
 }
 #container #wrapper #right_panel #chatting_section #messages .message-container.owner .message-wrapper .message-content p {
-  background-color: #8da4f1;
-  background-color: #0084ff;
-  background-color: #2f2d52;
-  background-color: #3e3c61;
   background-color: #5d5b8d;
   color: white;
   border-radius: 10px 0px 10px 10px;
@@ -313,8 +313,7 @@
 #container #wrapper #right_panel #chatting_section #reply_section textarea {
   resize: none;
   height: 38px;
-  /* background-color: #3e3c61;  changable */
-  background-color: lightgray;
+  background-color: #d3d3d3;
   padding: 10px 15px;
   width: 95%;
   border-radius: 25px;

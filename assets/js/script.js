@@ -48,21 +48,32 @@ function activeUser(ele) {
     ele.classList.add("active");
 }
 
-function sendMessage(xhr) {
-    if(xhr.readyState == 4 && xhr.status == 200) {
-        var message = document.getElementById("message_input").value;
-        document.getElementById("message_input").value = "";
-        document.getElementById("message_input").focus();
-        document.getElementById("messages").innerHTML = xhr.responseText;
-        var messages_container = document.getElementById("messages");
-        messages_container.scrollTo(0, messages_container.scrollHeight);
+function sendMessage() {
+    var messageInputBox = document.getElementById("message_input");
+    var dataObject = {
+        msg: messageInputBox.value,
+        uid: document.querySelector(".active").id
+    };
+
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            messageInputBox.value = "";
+            messageInputBox.focus();
+            document.getElementById("messages").innerHTML = xhr.responseText;
+            var messages_container = document.getElementById("messages");
+            messages_container.scrollTo(0, messages_container.scrollHeight);
+        }
     }
+
+    xhr.open("POST", "inc/send_message.php", true);
+    xhr.send(JSON.stringify(dataObject));
 }
 
 function handleKeyPress(e) {
     if(e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();     // Prevent the default behavior (line break)
-        loadData('inc/send_message.php?uid='+document.querySelector(".active").id+'&msg='+document.getElementById("message_input").value, sendMessage);
+        sendMessage();
     }        
 }
 
@@ -74,7 +85,7 @@ function loadMessages(xhr) {
         messages_container.innerHTML = xhr.responseText;
 
         // Ensure scroll stays at bottom if it was initially there
-        if(Math.abs(prevHeight - prevScrollPosition) < 3)
+        if(Math.abs(prevHeight - prevScrollPosition) < 2)
             messages_container.scrollTo(0, messages_container.scrollHeight);
     }
 }

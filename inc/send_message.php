@@ -2,9 +2,10 @@
     session_start();
     require_once('db_connection.php');
 
+    $data = json_decode(file_get_contents('php://input'), true);
     $sender = $_SESSION["id"];
-    $receiver = $_GET["uid"];
-    $message = $_GET["msg"];
+    $receiver = $data["uid"];
+    $message = htmlspecialchars($data["msg"], ENT_QUOTES);
 
     $sql = "SELECT image FROM user_info WHERE userid = $sender";
     $result = $conn -> query($sql);
