@@ -24,9 +24,9 @@ function openMessageBox(userid) {
     if(ele)
         ele.classList.add("active");
     else {
-        var unknown_user = document.querySelector(".hidden-user");
-        unknown_user.id = userid;
-        unknown_user.classList.add("active");
+        var unlist_user = document.querySelector(".unlist-user");
+        unlist_user.id = userid;
+        unlist_user.classList.add("active");
     }
         
     loadData('inc/display_messages.php?uid='+userid, displayMessages);
@@ -90,8 +90,19 @@ function loadMessages(xhr) {
     }
 }
 
+function loadLatestMessage(xhr) {
+    if(xhr.readyState == 4 && xhr.status == 200) {
+        document.getElementById("chat_profiles").innerHTML = xhr.responseText;
+    }
+}
+
 setInterval(function() {
     var activeUser = document.querySelector(".active");
-    if(activeUser)
-        loadData('inc/load_messages.php?uid='+activeUser.id, loadMessages); 
+    if(activeUser) {
+        loadData('inc/load_messages.php?uid='+activeUser.id, loadMessages);
+        loadData('inc/chat_list_update.php?uid='+activeUser.id, loadLatestMessage);
+    }
+
+    else
+        loadData('inc/chat_list_update.php?uid=0', loadLatestMessage);
 }, 1000);

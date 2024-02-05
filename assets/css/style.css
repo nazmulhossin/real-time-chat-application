@@ -168,6 +168,20 @@
   font-size: 14px;
   color: lightgray;
 }
+#container #wrapper #left_panel #chat_list ul li .msg-count {
+  background-color: gray;
+  min-height: 25px;
+  min-width: 25px;
+  margin-left: auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#container #wrapper #left_panel #chat_list ul li .msg-count span {
+  font-size: 14px;
+  font-weight: bold;
+}
 #container #wrapper #left_panel #chat_list ul li:hover {
   border-radius: 10px;
   background-color: #68669e;

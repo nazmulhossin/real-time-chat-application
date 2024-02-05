@@ -20,6 +20,9 @@
             <img src="'.$profile_images_folder.$receiver_profile_pic.'" alt=""> <span>'.$receiver_name.'</span>
         </div>';
 
+    $sql = "UPDATE messages SET seen = 1 WHERE sender = $receiver AND receiver = $sender";
+    $result = $conn -> query($sql);
+
     $sql = "SELECT sender, receiver, message, date FROM messages WHERE (sender = $sender AND receiver = $receiver) OR (sender = $receiver AND receiver = $sender)";
     $result = $conn -> query($sql);
 

@@ -49,15 +49,18 @@
                 <div id="chat_list">
                     <ul id="chat_profiles">
                         <?php
-                            $sql = 'SELECT DISTINCT user_info.userid, user_info.name, user_info.image FROM user_info JOIN messages ON user_info.userid = messages.sender OR user_info.userid = messages.receiver WHERE (messages.sender = '.$_SESSION["id"].' OR messages.receiver = '.$_SESSION["id"].') AND NOT user_info.userid = '.$_SESSION["id"].' ORDER BY messages.date DESC';
+                            $sql = 'SELECT user_info.userid, user_info.name, user_info.image, max(messages.chatid) AS chatid, SUM(CASE WHEN messages.seen = 0 AND messages.receiver = '.$_SESSION["id"].' THEN 1 ELSE 0 END) AS unseen_msg_count FROM user_info JOIN messages ON user_info.userid = messages.sender OR user_info.userid = messages.receiver WHERE (messages.sender = '.$_SESSION["id"].' OR messages.receiver = '.$_SESSION["id"].') AND NOT user_info.userid = '.$_SESSION["id"].' GROUP BY user_info.name ORDER BY chatid DESC';
                             $result = $conn -> query($sql);
                             while($row = $result -> fetch_assoc()) {
-                                echo '<li id="'.$row["userid"].'" onclick="activeUser(this); loadData(\'inc/display_messages.php?uid=\'+this.id, displayMessages)"><img src="'.$profile_images_folder.$row["image"].'" alt=""><div><span>'.$row["name"].'</span><p></p></div></li>';
+                                if($row["unseen_msg_count"] > 0)
+                                    echo '<li id="'.$row["userid"].'" onclick="activeUser(this); loadData(\'inc/display_messages.php?uid=\'+this.id, displayMessages)"><img src="'.$profile_images_folder.$row["image"].'" alt=""><div><span>'.$row["name"].'</span></div> <div class="msg-count"><span>'.$row["unseen_msg_count"].'</span></div></li>';
+                                else
+                                    echo '<li id="'.$row["userid"].'" onclick="activeUser(this); loadData(\'inc/display_messages.php?uid=\'+this.id, displayMessages)"><img src="'.$profile_images_folder.$row["image"].'" alt=""><div><span>'.$row["name"].'</span></div></li>';
                             }
                         ?>
-
-                        <li class="hidden-user" style="display:none;"><img src="" alt=""><div><span>Name</span><p>Latest Message</p></div></li>
                     </ul>
+
+                    <span class="unlist_chat_profile unlist-user" style="display:none;"></span>
                 </div>
 
                 <div id="logout">

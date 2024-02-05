@@ -130,7 +130,6 @@
                                 background-color: lightgray;
                                 border-radius: 50%;
                                 object-fit: cover;
-                                
                             }
 
                             span {
@@ -188,6 +187,22 @@
                             p {
                                 font-size: 14px;
                                 color: lightgray;
+                            }
+                        }
+
+                        .msg-count {
+                            background-color: gray;
+                            min-height: 25px;
+                            min-width: 25px;
+                            margin-left: auto;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            
+                            span {
+                                font-size: 14px;
+                                font-weight: bold;
                             }
                         }
 
