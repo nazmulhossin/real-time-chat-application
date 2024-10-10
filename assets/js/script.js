@@ -1,3 +1,6 @@
+let prevMsg = '';
+let prevLatestMsg = '';
+
 function loadData(url, callbackFunction) {
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -79,20 +82,26 @@ function handleKeyPress(e) {
 
 function loadMessages(xhr) {
     if(xhr.readyState == 4 && xhr.status == 200) {
-        var messages_container = document.getElementById("messages");
-        const prevHeight = messages_container.scrollHeight;
-        const prevScrollPosition = messages_container.scrollTop + messages_container.clientHeight;
-        messages_container.innerHTML = xhr.responseText;
+        if(prevMsg !== xhr.responseText) {
+            var messages_container = document.getElementById("messages");
+            const prevHeight = messages_container.scrollHeight;
+            const prevScrollPosition = messages_container.scrollTop + messages_container.clientHeight;
+            messages_container.innerHTML = xhr.responseText;
+            prevMsg = xhr.responseText;
 
-        // Ensure scroll stays at bottom if it was initially there
-        if(Math.abs(prevHeight - prevScrollPosition) < 2)
-            messages_container.scrollTo(0, messages_container.scrollHeight);
+            // Ensure scroll stays at bottom if it was initially there
+            if(Math.abs(prevHeight - prevScrollPosition) < 2)
+                messages_container.scrollTo(0, messages_container.scrollHeight);
+        }
     }
 }
 
 function loadLatestMessage(xhr) {
     if(xhr.readyState == 4 && xhr.status == 200) {
-        document.getElementById("chat_profiles").innerHTML = xhr.responseText;
+        if(prevLatestMsg !== xhr.responseText) {
+            document.getElementById("chat_profiles").innerHTML = xhr.responseText;
+            prevLatestMsg = xhr.responseText;
+        }
     }
 }
 
